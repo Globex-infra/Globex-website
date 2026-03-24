@@ -52,6 +52,7 @@
 
 html {
   scroll-behavior: auto; /* Lenis handles this */
+  overflow-x: hidden; /* Prevent horizontal overflow from animations/transforms */
 }
 
 body {
@@ -60,6 +61,7 @@ body {
   font-family: var(--font-dm-sans), sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
+  scrollbar-gutter: stable; /* Reserve scrollbar space — prevents layout shift when overflow:hidden is toggled */
   cursor: none; /* Custom cursor active */
 }
 

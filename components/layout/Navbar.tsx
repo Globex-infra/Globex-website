@@ -12,10 +12,23 @@ export default function Navbar() {
   const { activeSection } = useNavScroll(SECTION_IDS);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Lock body scroll when menu is open
+  // Lock body scroll when menu is open — compensate for scrollbar width to prevent layout shift
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (menuOpen) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = "hidden";
+      // Only pad if there's actually a scrollbar (desktop); on mobile scrollbar-gutter handles it
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    };
   }, [menuOpen]);
 
   const handleNavClick = (href: string) => {
