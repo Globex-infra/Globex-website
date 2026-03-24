@@ -70,44 +70,46 @@ export default function ProcessSection() {
       if (cancelled) return;
 
       ctx = gsap.context(() => {
-        const len = path.getTotalLength();
-        gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
+        const mm = gsap.matchMedia();
+        mm.add("(min-width: 768px)", () => {
+          const len = path.getTotalLength();
+          if (len <= 0) return;
+          gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
 
-        // Line draw follows scroll — shorter range + lower scrub = fills a bit faster per scroll
-        gsap.fromTo(
-          path,
-          { strokeDashoffset: len },
-          {
-            strokeDashoffset: 0,
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top bottom",
-              end: "bottom 52%",
-              scrub: 0.2,
-              invalidateOnRefresh: true,
-            },
-          }
-        );
-
-        // Nodes subtly emphasize as their band of scroll passes (reverses when scrolling up)
-        nodesRef.current.forEach((node) => {
-          if (!node) return;
           gsap.fromTo(
-            node,
-            { opacity: 0.45, scale: 0.92 },
+            path,
+            { strokeDashoffset: len },
             {
-              opacity: 1,
-              scale: 1,
+              strokeDashoffset: 0,
               ease: "none",
               scrollTrigger: {
-                trigger: node,
-                start: "top 78%",
-                end: "top 42%",
+                trigger: section,
+                start: "top bottom",
+                end: "bottom 52%",
                 scrub: 0.2,
+                invalidateOnRefresh: true,
               },
             }
           );
+
+          nodesRef.current.forEach((node) => {
+            if (!node) return;
+            gsap.fromTo(
+              node,
+              { opacity: 0.45, scale: 0.92 },
+              {
+                opacity: 1,
+                scale: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: node,
+                  start: "top 78%",
+                  end: "top 42%",
+                  scrub: 0.2,
+                },
+              }
+            );
+          });
         });
       }, section);
     })();
@@ -124,8 +126,8 @@ export default function ProcessSection() {
       id="process"
       className="relative overflow-hidden bg-primary py-28 md:py-36 grain"
     >
-      {/* Decorative background vectors */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden>
+      {/* Decorative background vectors — md+ only */}
+      <div className="pointer-events-none absolute inset-0 hidden opacity-[0.07] md:block" aria-hidden>
         <svg className="absolute -right-20 top-20 h-64 w-64 text-white" viewBox="0 0 200 200" fill="none">
           <circle cx="100" cy="100" r="80" stroke="currentColor" strokeWidth="0.5" />
           <circle cx="100" cy="100" r="120" stroke="currentColor" strokeWidth="0.35" />
@@ -157,13 +159,13 @@ export default function ProcessSection() {
           </p>
         </div>
 
-        {/* Timeline + content */}
-        <div className="relative flex flex-col gap-10 lg:flex-row lg:gap-12">
-          {/* SVG timeline rail (desktop: left column) */}
-          <div className="relative mx-auto w-full max-w-[min(100%,28rem)] shrink-0 lg:mx-0 lg:w-32 lg:max-w-none">
-            <div className="relative aspect-[3/5] min-h-[320px] w-full sm:min-h-[min(50vh,420px)] lg:aspect-auto lg:min-h-[640px] lg:h-full">
+        {/* Timeline + content — md+ row so tablet (e.g. 768px) isn’t a giant rail above all cards */}
+        <div className="relative isolate flex flex-col gap-10 md:flex-row md:items-stretch md:gap-10 lg:gap-12">
+          {/* SVG timeline rail — hidden below md */}
+          <div className="relative z-0 hidden max-w-[min(100%,28rem)] shrink-0 md:mx-0 md:block md:w-28 md:max-w-none lg:w-32">
+            <div className="relative aspect-[3/5] min-h-[320px] w-full overflow-hidden sm:min-h-[min(50vh,420px)] md:aspect-auto md:h-full md:min-h-[min(100%,640px)]">
               <svg
-                className="absolute inset-0 h-full w-full overflow-visible"
+                className="absolute inset-0 h-full w-full overflow-hidden"
                 viewBox="0 0 48 1000"
                 preserveAspectRatio="xMidYMin slice"
                 aria-hidden
@@ -226,7 +228,7 @@ export default function ProcessSection() {
           </div>
 
           {/* Cards */}
-          <div className="min-w-0 flex-1 space-y-6 md:space-y-8">
+          <div className="relative z-10 min-w-0 flex-1 space-y-6 md:space-y-8">
             {PROCESS_STEPS.map((step: ProcessStep, i: number) => (
               <article
                 key={step.id}
@@ -234,8 +236,8 @@ export default function ProcessSection() {
                 style={{ transitionDelay: `${i * 80}ms` }}
                 className="group relative rounded-2xl border border-white/[0.09] bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-6 backdrop-blur-sm transition-all duration-500 md:p-8 hover:border-white/15"
               >
-                {/* Small vector accent */}
-                <div className="absolute right-6 top-6 opacity-[0.12] transition-opacity duration-500 group-hover:opacity-25" aria-hidden>
+                {/* Small vector accent — md+ only */}
+                <div className="absolute right-6 top-6 hidden opacity-[0.12] transition-opacity duration-500 group-hover:opacity-25 md:block" aria-hidden>
                   <svg width="72" height="72" viewBox="0 0 72 72" fill="none" className="text-white">
                     <path
                       d="M8 36h56M36 8v56M18 18l36 36M54 18L18 54"
