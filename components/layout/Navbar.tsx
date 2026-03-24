@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
 import { useNavScroll } from "@/hooks/useNavScroll";
 import { NAV_ITEMS } from "@/lib/data";
 import { scrollToSection } from "@/lib/utils";
 import type { NavItem } from "@/types";
+import { useEffect, useState } from "react";
 
 const SECTION_IDS = ["about", "services", "process", "work", "clients", "contact"];
 
@@ -35,24 +34,9 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-10 flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <a
-            href="#"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            className="group flex items-center"
-            aria-label="Globe X Infra — Home"
-          >
-            <span className="nav-logo-shell">
-              <Image
-                src="/brand/logo.png"
-                alt=""
-                width={168}
-                height={40}
-                className="h-8 w-auto max-w-[168px] object-contain object-left sm:h-9"
-                priority
-              />
-            </span>
-          </a>
+        
+          <div>
+          </div>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-8">
@@ -63,10 +47,16 @@ export default function Navbar() {
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item.href)}
-                  className={`text-sm font-medium tracking-wide transition-all duration-300 relative group ${
+                  className={`text-sm tracking-wide transition-all duration-300 relative group ${
+                    isActive ? "font-semibold" : "font-medium"
+                  } ${
                     isScrolled
-                      ? isActive ? "text-primary" : "text-gray-600 hover:text-primary"
-                      : isActive ? "text-white" : "text-white/70 hover:text-white"
+                      ? isActive
+                        ? "text-primary"
+                        : "text-gray-600 hover:text-primary"
+                      : isActive
+                        ? "text-white"
+                        : "text-white hover:text-white/85"
                   }`}
                 >
                   {item.label}
@@ -88,7 +78,7 @@ export default function Navbar() {
               className={`hidden lg:inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 ${
                 isScrolled
                   ? "bg-primary text-white hover:bg-primary-dark"
-                  : "bg-white text-primary hover:bg-white/90"
+                  : "bg-white text-primary shadow-sm ring-1 ring-black/5 hover:bg-primary hover:text-white"
               }`}
             >
               Get in Touch

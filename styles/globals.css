@@ -24,6 +24,21 @@
   .nav-logo-shell {
     @apply inline-flex h-11 max-h-11 items-center overflow-hidden rounded-lg bg-primary px-3 shadow-sm ring-1 ring-primary/20;
   }
+
+  /* Logo reveal animation on first load (OCI/Buzzworthy-style clip-path wipe) */
+  .nav-logo-shell--reveal {
+    clip-path: inset(0 100% 0 0);
+    animation: navLogoReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  }
+}
+
+@keyframes navLogoReveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 /* ─── Base Reset ────────────────────────────────────────────────────────────── */

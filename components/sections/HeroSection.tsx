@@ -99,7 +99,7 @@ export default function HeroSection() {
 
       {/* Watermark marquee */}
       <div className="hero-animate-5 relative z-0 overflow-hidden py-4 select-none pointer-events-none">
-        <div className="flex whitespace-nowrap animate-marquee">
+        <div className="flex whitespace-nowrap animate-[marquee_10s_linear_infinite]">
           {Array(6).fill("Globe X Infra · Exhibition Design · Trade Shows · Brand Activation · ").map((t, i) => (
             <span key={i} className="text-white/[0.04] text-8xl font-bold tracking-tight mr-8 shrink-0">
               {t}
@@ -146,3 +146,5 @@ export default function HeroSection() {
     </section>
   );
 }
+
+

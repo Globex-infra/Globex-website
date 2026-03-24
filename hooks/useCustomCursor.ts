@@ -14,7 +14,7 @@ export function useCustomCursor() {
     if (!cursor || !follower) return;
 
     // Hide on mobile
-    if (window.matchMedia("(pointer: coarse)").matches) {
+    if (globalThis.window?.matchMedia("(pointer: coarse)").matches) {
       cursor.style.display = "none";
       follower.style.display = "none";
       return;
@@ -30,9 +30,12 @@ export function useCustomCursor() {
 
     const updateHeroCursor = () => {
       const target = document.elementFromPoint(mouseX, mouseY);
-      const inHero = Boolean(target?.closest(HERO_SELECTOR));
-      cursor.classList.toggle("cursor--on-hero", inHero);
-      follower.classList.toggle("cursor-follower--on-hero", inHero);
+      const heroEl = target?.closest(HERO_SELECTOR);
+      const inHero = Boolean(heroEl);
+      const heroTheme = heroEl instanceof HTMLElement ? heroEl.dataset.theme : undefined;
+      const useLightCursor = inHero && heroTheme !== "light";
+      cursor.classList.toggle("cursor--on-hero", useLightCursor);
+      follower.classList.toggle("cursor-follower--on-hero", useLightCursor);
     };
 
     const onMouseMove = (e: MouseEvent) => {

@@ -13,11 +13,12 @@ import ClientsSection from "@/components/sections/ClientsSection";
 import CtaBand from "@/components/sections/CtaBand";
 import ContactSection from "@/components/sections/ContactSection";
 
+
 // ─── Home Page ────────────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
     <LenisProvider>
-      {/* <GlobeLoader /> */}
+      <GlobeLoader />
       <CustomCursor />
       <Navbar />
       <main>
