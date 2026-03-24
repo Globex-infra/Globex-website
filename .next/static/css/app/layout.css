@@ -1394,9 +1394,6 @@ video {
 .bg-white\/40 {
   background-color: rgb(255 255 255 / 0.4);
 }
-.bg-white\/95 {
-  background-color: rgb(255 255 255 / 0.95);
-}
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -1560,11 +1557,11 @@ video {
 .text-center {
   text-align: center;
 }
-.font-display {
-  font-family: var(--font-playfair), serif;
-}
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.font-sans {
+  font-family: var(--font-dm-sans), sans-serif;
 }
 .text-2xl {
   font-size: 1.5rem;
@@ -1828,10 +1825,6 @@ video {
 }
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-.backdrop-blur-md {
-  --tw-backdrop-blur: blur(12px);
-  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 .backdrop-blur-sm {
   --tw-backdrop-blur: blur(4px);
@@ -2177,9 +2170,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .hover\:text-white\/60:hover {
   color: rgb(255 255 255 / 0.6);
-}
-.hover\:text-white\/85:hover {
-  color: rgb(255 255 255 / 0.85);
 }
 .hover\:opacity-70:hover {
   opacity: 0.7;

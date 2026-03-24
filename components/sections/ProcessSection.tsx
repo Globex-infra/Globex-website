@@ -138,7 +138,7 @@ export default function ProcessSection() {
         </svg>
       </div>
 
-      <div className="relative z-[1] mx-auto max-w-7xl px-6 lg:px-10">
+      <div className="relative z-[1] mx-auto max-w-7xl px-6 font-sans lg:px-10">
         {/* Header */}
         <div className="mb-16 flex flex-col gap-8 lg:mb-24 lg:flex-row lg:items-end lg:justify-between">
           <div>
@@ -148,7 +148,7 @@ export default function ProcessSection() {
                 How We Work
               </span>
             </div>
-            <h2 className="text-fluid-4xl font-bold leading-tight text-white" data-reveal>
+            <h2 className="text-fluid-4xl font-bold leading-tight tracking-tight text-white" data-reveal>
               Our{" "}
               <em className="font-playfair font-normal italic text-white/60">Process</em>
             </h2>
@@ -249,12 +249,12 @@ export default function ProcessSection() {
                 </div>
 
                 <div className="relative flex flex-wrap items-start justify-between gap-3 border-b border-white/[0.07] pb-4">
-                  <span className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-white/35">
+                  <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-white/35 tabular-nums">
                     {String(i + 1).padStart(2, "0")} / {String(PROCESS_STEPS.length).padStart(2, "0")}
                   </span>
-                  <span className="font-mono text-sm font-semibold text-primary-light/80">{step.number}</span>
+                  <span className="text-sm font-semibold tabular-nums text-primary-light/80">{step.number}</span>
                 </div>
-                <h3 className="mb-3 mt-4 font-display text-xl font-semibold tracking-tight text-white md:text-2xl">
+                <h3 className="mb-3 mt-4 text-xl font-semibold tracking-tight text-white md:text-2xl">
                   {step.title}
                 </h3>
                 <p className="max-w-2xl text-[15px] leading-relaxed text-white/50 md:text-base">

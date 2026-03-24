@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const SECTION_IDS = ["about", "services", "process", "work", "clients", "contact"];
 
 export default function Navbar() {
-  const { isScrolled, activeSection } = useNavScroll(SECTION_IDS);
+  const { activeSection } = useNavScroll(SECTION_IDS);
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Lock body scroll when menu is open
@@ -26,13 +26,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-sm"
-            : "bg-transparent"
-        }`}
-      >
+      <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-primary shadow-sm transition-all duration-500">
         <div className="mx-auto max-w-7xl px-6 lg:px-10 flex items-center justify-between h-16 lg:h-20">
         
           <div>
@@ -47,21 +41,13 @@ export default function Navbar() {
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item.href)}
-                  className={`text-sm tracking-wide transition-all duration-300 relative group ${
-                    isActive ? "font-semibold" : "font-medium"
-                  } ${
-                    isScrolled
-                      ? isActive
-                        ? "text-primary"
-                        : "text-gray-600 hover:text-primary"
-                      : isActive
-                        ? "text-white"
-                        : "text-white hover:text-white/85"
+                  className={`group relative text-sm tracking-wide transition-all duration-300 ${
+                    isActive ? "font-semibold text-white" : "font-medium text-white/80 hover:text-white"
                   }`}
                 >
                   {item.label}
                   <span
-                    className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300 ${
+                    className={`absolute -bottom-1 left-0 h-px bg-white transition-all duration-300 ${
                       isActive ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   />
@@ -75,20 +61,14 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }}
-              className={`hidden lg:inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 ${
-                isScrolled
-                  ? "bg-primary text-white hover:bg-primary-dark"
-                  : "bg-white text-primary shadow-sm ring-1 ring-black/5 hover:bg-primary hover:text-white"
-              }`}
+              className="hidden items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-primary shadow-sm ring-1 ring-black/5 transition-all duration-300 hover:bg-white/90 lg:inline-flex"
             >
               Get in Touch
             </a>
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className={`lg:hidden flex flex-col gap-1.5 w-8 h-8 items-center justify-center transition-colors duration-300 ${
-                isScrolled ? "text-primary" : "text-white"
-              }`}
+              className="flex h-8 w-8 flex-col items-center justify-center gap-1.5 text-white transition-colors duration-300 lg:hidden"
               aria-label="Toggle menu"
             >
               <span
