@@ -109,12 +109,6 @@ export default function Navbar() {
               {item.label}
             </button>
           ))}
-          <a
-            href="tel:+916395255110"
-            className="mt-8 text-white/60 text-sm tracking-widest uppercase"
-          >
-            +91 6395255110
-          </a>
         </div>
       </div>
     </>
