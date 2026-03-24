@@ -91,11 +91,12 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay — use display:none when closed so the layer cannot block scroll/touch */}
       <div
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${
-          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-500 ${
+          menuOpen ? "opacity-100 pointer-events-auto" : "hidden"
         }`}
+        aria-hidden={!menuOpen}
       >
         <div className="absolute inset-0 bg-primary" />
         <div className="relative h-full flex flex-col items-center justify-center gap-8 pt-16">
@@ -109,6 +110,12 @@ export default function Navbar() {
               {item.label}
             </button>
           ))}
+          <a
+            href="tel:+916395255110"
+            className="mt-8 text-white/60 text-sm tracking-widest uppercase"
+          >
+            +91 6395255110
+          </a>
         </div>
       </div>
     </>

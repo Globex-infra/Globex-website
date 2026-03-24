@@ -29,19 +29,25 @@ export default function AboutSection() {
             </h2>
             <div className="space-y-5 text-gray-600 leading-relaxed" data-reveal="left">
               <p>
-                At Globe X, we turn ideas into real, living spaces. Every brand has a story to tell, and our job is to bring that story to life through
-                thoughtfully designed spaces that people can see, feel, and experience.
+                Founded in 2019, Globe X Infra Pvt. Ltd. is a Greater Noida–based spatial
+                experience design company specialising in exhibitions, trade shows, corporate
+                events, and brand activations across India and internationally.
               </p>
               <p>
-                Inspired by architecture and driven by design thinking, we craft spaces that are more than just structures—they are experiences designed
-                to create a lasting impression. While exhibitions are part of our journey, our work goes far beyond them. From installations to large-scale
-                structures, we explore every possibility where art, design, and production meet.
-
+                We believe every square metre of space is an opportunity to communicate. Our
+                multidisciplinary team of designers, fabricators, and event strategists works
+                as an integrated unit — concept to teardown — ensuring that nothing is lost
+                in translation between idea and reality.
+              </p>
+              <p>
+                With 200+ projects delivered across 50+ brand partners, we have developed a
+                fluency in diverse sectors: textile, automotive, food-tech, tourism, finance,
+                FMCG, and heavy industry.
               </p>
             </div>
 
             {/* Image strip below copy */}
-            {/* <div className="mt-10 grid grid-cols-2 gap-3" data-reveal="left">
+            <div className="mt-10 grid grid-cols-2 gap-3" data-reveal="left">
               <div className="relative h-44 rounded-xl overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&q=80"
@@ -60,14 +66,6 @@ export default function AboutSection() {
                 />
                 <div className="absolute inset-0 bg-primary/20" />
               </div>
-            </div> */}
-
-            <div className="flex items-center gap-6 pt-12 pl-4">
-              <div className="text-4xl font-bold text-primary/20">6+</div>
-              <div>
-                <div className="text-sm font-medium text-gray-900">Years of award-winning work</div>
-                <div className="text-xs text-gray-400 mt-0.5">200+ projects · 50+ brand partners</div>
-              </div>
             </div>
           </div>
 
@@ -81,12 +79,12 @@ export default function AboutSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <h3 className="text-sm font-semibold tracking-[0.15em] uppercase text-primary">Our Promise</h3>
+                <h3 className="text-sm font-semibold tracking-[0.15em] uppercase text-primary">Vision</h3>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                To continue delivering spaces that
-                inspire, connect, and transform how
-                people experience brands and ideas.
+                To be South Asia's most trusted spatial experience design partner — where
+                every environment we create becomes a lasting memory for the people who
+                inhabit it.
               </p>
             </div>
 
@@ -97,18 +95,17 @@ export default function AboutSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                   </svg>
                 </div>
-                <h3 className="text-sm font-semibold tracking-[0.15em] uppercase text-white/70">Our Vision</h3>
+                <h3 className="text-sm font-semibold tracking-[0.15em] uppercase text-white/70">Mission</h3>
               </div>
               <p className="text-white/80 leading-relaxed">
-                To become India's most sought-after
-                experiential design firm, known for
-                innovation, quality, and unforgettable
-                spatial experiences.
+                To deliver spatial experiences that are both strategically intelligent and
+                aesthetically exceptional — empowering brands to connect with their
+                audiences at a human level, every single time.
               </p>
             </div>
 
             {/* Full-width showcase image */}
-            {/* <div className="relative h-52 rounded-2xl overflow-hidden" data-reveal="right">
+            <div className="relative h-52 rounded-2xl overflow-hidden" data-reveal="right">
               <Image
                 src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80"
                 alt="Globe X event design showcase"
@@ -124,47 +121,16 @@ export default function AboutSection() {
                 <div className="text-3xl font-bold">2019</div>
                 <div className="text-xs text-white/60 mt-0.5">Greater Noida · India</div>
               </div>
-            </div> */}
-
-            <div className="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-500">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                  <svg
-                    width="16px"
-                    height="16px"
-                    viewBox="0 0 32 32"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16 2L28 7V17C28 24 22 30 16 33C10 30 4 24 4 17V7L16 2Z"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinejoin="round"
-                    />
-                    <polyline
-                      points="10,17 14,22 22,12"
-                      stroke="currentColor"
-                      strokeWidth="2.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-
-                </div>
-                <h3 className="text-sm font-semibold tracking-[0.15em] uppercase text-primary">Our Commitment</h3>
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                To invest in our people, embrace new
-                technologies, and constantly raise the
-                bar for what's possible in experiential
-                design.
-
-              </p>
             </div>
 
             {/* Founded badge */}
-
+            <div className="flex items-center gap-6 pt-2 pl-4">
+              <div className="text-4xl font-bold text-primary/20">6+</div>
+              <div>
+                <div className="text-sm font-medium text-gray-900">Years of award-winning work</div>
+                <div className="text-xs text-gray-400 mt-0.5">200+ projects · 50+ brand partners</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
