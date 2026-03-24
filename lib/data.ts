@@ -108,34 +108,40 @@ export const PROCESS_STEPS: ProcessStep[] = [
   {
     id: 1,
     number: "01",
-    title: "Design",
-    description: "We begin with deep-listening sessions to understand your objectives, audience, and spatial constraints. Every concept starts from purpose.",
+    title: "Discovery & Strategy",
+    description:
+      "We begin by deeply understanding your brand narrative, target audience, and objectives. Through collaborative workshops and research, we uncover the insights that will shape your experience.",
   },
   {
     id: 2,
     number: "02",
-    title: "Analysis",
-    description: "We analyse the brief, research the competitive landscape, and map key touchpoints to build a strategic foundation before a single line is drawn.",
+    title: "Impact & Measurement",
+    description:
+      "We don't stop at opening day. We measure engagement, gather feedback, and analyze the impact of your experience to ensure lasting results and continuous improvement.",
   },
   {
     id: 3,
     number: "03",
-    title: "Production",
-    description: "Our in-house fabrication teams bring concepts to life with precision craftsmanship, using materials chosen for longevity and aesthetic impact.",
+    title: "Creative Conceptualization",
+    description:
+      "Our creative team transforms insights into compelling spatial concepts. We explore innovative ideas, push boundaries, and develop designs that are both visually striking and strategically aligned.",
   },
   {
     id: 4,
     number: "04",
     title: "Concepts",
-    description: "Iterative concept development with your team ensures the final vision is bold, achievable, and aligned with brand identity.",
+    description:
+      "From detailed planning to flawless execution, we manage every aspect with precision. Our team coordinates vendors, oversees quality, and ensures your vision comes to life exactly as imagined.",
   },
   {
     id: 5,
     number: "05",
-    title: "Management",
-    description: "From logistics and permits to on-site setup and teardown — we manage every operational detail so you can focus on your audience.",
+    title: "Execution & Delivery",
+    description:
+      "From logistics and permits to on-site setup and teardown — we manage every operational detail so you can focus on your audience.",
   },
 ];
+
 
 // ─── Core Values ──────────────────────────────────────────────────────────────
 export const CORE_VALUES: CoreValue[] = [
@@ -264,8 +270,8 @@ export const CLIENTS: ClientLogo[] = [
 
 // ─── Contact ──────────────────────────────────────────────────────────────────
 export const CONTACT_INFO: ContactInfo = {
-  phone: ["+91 6395255110", "0120 5100423"],
-  email: "info@globexsolution.in",
-  website: "www.globexsolution.in",
-  address: "#1114, 11th Floor, Gaur City Mall, Greater Noida West",
+  phone: ["0120 - 471 - 5385"],
+  email: "info@globexinfra.com",
+  website: "www.globexsolution.com",
+  address: "807, Supertech Astralis, Sec-94, Noida, U.P, India",
 };
