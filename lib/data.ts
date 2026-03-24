@@ -266,6 +266,6 @@ export const CLIENTS: ClientLogo[] = [
 export const CONTACT_INFO: ContactInfo = {
   phone: ["+91 6395255110", "0120 5100423"],
   email: "info@globexsolution.in",
-  website: "www.globexsolution.in",
+  website: "www.globexsolution.com",
   address: "#1114, 11th Floor, Gaur City Mall, Greater Noida West",
 };
