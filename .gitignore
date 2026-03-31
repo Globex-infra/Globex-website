@@ -1,2 +1,19 @@
+# Dependencies
 node_modules
 
+# Next.js build & dev output (regenerated locally — do not commit)
+.next
+out
+
+# Env
+.env*.local
+
+# Debug / OS
+.DS_Store
+*.pem
+
+# TypeScript
+*.tsbuildinfo
+
+# Vercel
+.vercel

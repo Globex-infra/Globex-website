@@ -10,6 +10,7 @@ import { LenisProvider } from "@/components/animations/LenisProvider";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { scrollToSection } from "@/lib/utils";
 import type { Project } from "@/types";
+import { GlobeLoader } from "@/components/ui/GlobeLoader";
 
 interface Props {
   project: any;
@@ -79,6 +80,8 @@ export default function ProjectDetailClient({ project, nextProject }: Props) {
 
   return (
     <LenisProvider>
+      <GlobeLoader staticLogo />
+
       <CustomCursor />
       <Navbar />
 

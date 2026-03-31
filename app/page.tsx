@@ -1,4 +1,5 @@
 import Navbar from "@/components/layout/Navbar";
+import { HomeHashScroll } from "@/components/layout/HomeHashScroll";
 import Footer from "@/components/layout/Footer";
 import { LenisProvider } from "@/components/animations/LenisProvider";
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -18,6 +19,7 @@ import ContactSection from "@/components/sections/ContactSection";
 export default function HomePage() {
   return (
     <LenisProvider>
+      <HomeHashScroll />
       <GlobeLoader />
       <CustomCursor />
       <Navbar />

@@ -42,7 +42,12 @@ function prefersReducedMotion(): boolean {
   return globalThis.window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-export function GlobeLoader() {
+type GlobeLoaderProps = {
+  /** Navbar-aligned logo only — no full-screen intro, scroll lock, or motion */
+  staticLogo?: boolean;
+};
+
+export function GlobeLoader({ staticLogo = false }: GlobeLoaderProps = {}) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const logoWrapRef = useRef<HTMLButtonElement>(null);
   const scrollLockRestoreRef = useRef<string | null>(null);
@@ -50,12 +55,13 @@ export function GlobeLoader() {
   const [logoDecoded, setLogoDecoded] = useState(false);
 
   useEffect(() => {
+    if (staticLogo) return;
     scrollLockRestoreRef.current ??= document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
     return () => {
       document.documentElement.style.overflow = scrollLockRestoreRef.current ?? "";
     };
-  }, []);
+  }, [staticLogo]);
 
   useEffect(() => {
     const overlay = overlayRef.current;
@@ -73,7 +79,7 @@ export function GlobeLoader() {
       restoreScroll();
     };
 
-    if (prefersReducedMotion()) {
+    const applyFinalLayout = () => {
       const vw = globalThis.window.innerWidth;
       const { top, left } = getLoaderGaps(vw);
       gsap.set(overlay, {
@@ -88,6 +94,19 @@ export function GlobeLoader() {
         width: LOGO_FINAL_WIDTH,
         opacity: 1,
       });
+    };
+
+    if (staticLogo) {
+      applyFinalLayout();
+      onIntroComplete();
+      return () => {
+        alive = false;
+        restoreScroll();
+      };
+    }
+
+    if (prefersReducedMotion()) {
+      applyFinalLayout();
       onIntroComplete();
       return () => {
         alive = false;
@@ -162,21 +181,21 @@ export function GlobeLoader() {
       tl.kill();
       restoreScroll();
     };
-  }, [logoDecoded]);
+  }, [logoDecoded, staticLogo]);
 
   // Fallback if onLoadingComplete never fires (edge network / ad blockers)
   useEffect(() => {
-    if (logoDecoded || prefersReducedMotion()) return;
+    if (logoDecoded || prefersReducedMotion() || staticLogo) return;
     const id = globalThis.window.setTimeout(() => setLogoDecoded(true), 1400);
     return () => globalThis.window.clearTimeout(id);
-  }, [logoDecoded]);
+  }, [logoDecoded, staticLogo]);
 
   return (
     <div
       id={LOADER_ID}
-      role="status"
-      aria-live="polite"
-      aria-label="Loading Globe X Infra"
+      role={staticLogo ? undefined : "status"}
+      aria-live={staticLogo ? undefined : "polite"}
+      aria-label={staticLogo ? undefined : "Loading Globe X Infra"}
       className="fixed inset-0 z-[10001] pointer-events-none overflow-hidden"
     >
       <div
