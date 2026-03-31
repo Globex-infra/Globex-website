@@ -423,7 +423,7 @@ export const PROJECTS: any[] = [
     category: "Exhibition Design",
     description: "A vibrant and technically rich exhibition booth for Chroma Chemie, India's specialist in specialty chemicals, pigments, and colorants.",
     colorFrom: "#8e53db",
-    colorTo: "#a66ef5",
+    colorTo: "#6fedc5",
     tags: ["Trade Show", "Exhibition Design"],
     image: "/images/chromachemie/0.101.png",
     year: "2024",
