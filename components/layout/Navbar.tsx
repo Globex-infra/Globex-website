@@ -4,13 +4,18 @@ import { useNavScroll } from "@/hooks/useNavScroll";
 import { NAV_ITEMS } from "@/lib/data";
 import { scrollToSection } from "@/lib/utils";
 import type { NavItem } from "@/types";
+import { GLOBEX_NAV_SECTION_STORAGE_KEY } from "@/lib/nav-scroll-bridge";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const SECTION_IDS = ["about", "services", "process", "work", "clients", "contact"];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const router = useRouter();
   const { activeSection } = useNavScroll(SECTION_IDS);
   const [menuOpen, setMenuOpen] = useState(false);
+  
 
   // Lock body scroll when menu is open — compensate for scrollbar width to prevent layout shift
   useEffect(() => {
@@ -34,6 +39,15 @@ export default function Navbar() {
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
     const id = href.replace("#", "");
+    if (pathname.startsWith("/work")) {
+      try {
+        sessionStorage.setItem(GLOBEX_NAV_SECTION_STORAGE_KEY, id);
+      } catch {
+        /* ignore quota / private mode */
+      }
+      router.push(`/#${id}`);
+      return;
+    }
     scrollToSection(id);
   };
 

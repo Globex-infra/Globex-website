@@ -1,4 +1,5 @@
 import Navbar from "@/components/layout/Navbar";
+import { HomeHashScroll } from "@/components/layout/HomeHashScroll";
 import Footer from "@/components/layout/Footer";
 import { LenisProvider } from "@/components/animations/LenisProvider";
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -19,6 +20,7 @@ import { WhatsAppIcon } from "@/lib/svg";
 export default function HomePage() {
   return (
     <LenisProvider>
+      <HomeHashScroll />
       <GlobeLoader />
       <CustomCursor />
       <Navbar />
