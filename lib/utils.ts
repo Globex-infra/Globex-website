@@ -78,3 +78,5 @@ export function scrollToSection(id: string): void {
     el.scrollIntoView({ behavior: "smooth" });
   }
 }
+
+
