@@ -181,13 +181,24 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
+        {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/25">
             © {year} Globe X Infra Pvt. Ltd. All rights reserved.
           </p>
-          <p className="text-xs text-white/20">
-            Designed & built with precision.
-          </p>
+          <div className="flex items-center gap-6">
+            <a
+              href="/client-policy.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-white/25 hover:text-white/60 transition-colors duration-200 underline underline-offset-4"
+            >
+              Client Policy
+            </a>
+            <p className="text-xs text-white/20">
+              Designed & built with precision.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
