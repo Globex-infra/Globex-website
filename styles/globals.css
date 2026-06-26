@@ -290,7 +290,7 @@ h1, h2, h3, h4, h5, h6 {
   /* Zoom past baked-in letterbox bars in the source file */
   transform: scale(1.5);
   transform-origin: center 46%;
-  object-position: center 46%;
+  object-position: center 35%;
 }
 
 @media (min-width: 480px) {
@@ -313,7 +313,7 @@ h1, h2, h3, h4, h5, h6 {
   .hero-video {
     transform: scale(1.2);
     transform-origin: center 42%;
-    object-position: center 42%;
+    object-position: center 32%;
   }
 }
 
