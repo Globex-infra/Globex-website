@@ -1,153 +1,3 @@
-// "use client";
-
-// import { useEffect, useRef } from "react";
-// import { STATS } from "@/lib/data";
-// import { animateCounter } from "@/lib/utils";
-// import type { Stat } from "@/types";
-
-// export default function HeroSection() {
-//   const statsRef = useRef<HTMLDivElement>(null);
-//   const countersStarted = useRef(false);
-
-//   useEffect(() => {
-//     const observer = new IntersectionObserver(
-//       (entries) => {
-//         entries.forEach((entry) => {
-//           if (entry.isIntersecting && !countersStarted.current) {
-//             countersStarted.current = true;
-//             const els = entry.target.querySelectorAll<HTMLElement>("[data-count]");
-//             els.forEach((el) => {
-//               const target = parseInt(el.dataset.count || "0", 10);
-//               animateCounter(el, target, "", 2000);
-//             });
-//           }
-//         });
-//       },
-//       { threshold: 0.5 }
-//     );
-
-//     if (statsRef.current) observer.observe(statsRef.current);
-//     return () => observer.disconnect();
-//   }, []);
-
-//   return (
-//     <section
-//       id="hero"
-//       className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-primary grain"
-//     >
-//       {/* Grid background */}
-//       <div className="grid-bg absolute inset-0 opacity-30" />
-
-//       {/* Hero content */}
-//       <div className="relative z-10 flex-1 flex flex-col justify-center px-6 lg:px-10 pt-32 pb-0 max-w-7xl mx-auto w-full">
-//         {/* Eyebrow */}
-//         <div className="hero-animate-1 flex items-center gap-3 mb-8">
-//           <span className="inline-block w-8 h-px bg-white/40" />
-//           <span className="text-xs font-medium tracking-[0.3em] uppercase text-white/60">
-//             Spatial Experience Design
-//           </span>
-//         </div>
-
-//         {/* Headline */}
-//         <h1 className="hero-animate-2 font-dm-sans font-bold text-white leading-[1.0] tracking-tight mb-8">
-//           <span className="block text-fluid-5xl">We Build</span>
-//           <span className="block text-fluid-5xl">
-//             Spaces That{" "}
-//             <em className="font-playfair font-normal italic text-white/70 not-italic">
-//               Speak.
-//             </em>
-//           </span>
-//         </h1>
-
-//         {/* Sub */}
-//         <p className="hero-animate-3 text-white/60 text-fluid-base max-w-lg leading-relaxed mb-12">
-//           Globe X Infra crafts award-worthy exhibitions, trade show booths, and
-//           corporate event environments across India and internationally.
-//         </p>
-
-//         {/* CTAs */}
-//         <div className="hero-animate-4 flex flex-wrap items-center gap-4">
-//           <a
-//             href="#work"
-//             onClick={(e) => {
-//               e.preventDefault();
-//               document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
-//             }}
-//             className="inline-flex items-center gap-3 bg-white text-primary font-semibold text-sm px-7 py-4 rounded-full hover:bg-white/90 transition-all duration-300 group"
-//           >
-//             View Our Work
-//             <svg
-//               className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-//               fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-//             >
-//               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-//             </svg>
-//           </a>
-//           <a
-//             href="#about"
-//             onClick={(e) => {
-//               e.preventDefault();
-//               document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-//             }}
-//             className="inline-flex items-center gap-3 text-white/80 font-medium text-sm hover:text-white transition-colors duration-300 group"
-//           >
-//             Our Story
-//             <span className="w-8 h-px bg-white/40 group-hover:w-12 transition-all duration-300 inline-block" />
-//           </a>
-//         </div>
-//       </div>
-
-//       {/* Watermark marquee */}
-//       <div className="hero-animate-5 relative z-0 overflow-hidden py-4 select-none pointer-events-none">
-//         <div className="flex whitespace-nowrap animate-[marquee_10s_linear_infinite]">
-//           {Array(6).fill("Globe X Infra · Exhibition Design · Trade Shows · Brand Activation · ").map((t, i) => (
-//             <span key={i} className="text-white/[0.04] text-8xl font-bold tracking-tight mr-8 shrink-0">
-//               {t}
-//             </span>
-//           ))}
-//         </div>
-//       </div>
-
-//       {/* Stats strip */}
-//       <div
-//         ref={statsRef}
-//         className="relative z-10 border-t border-white/10 bg-black/20 backdrop-blur-sm"
-//       >
-//         <div className="mx-auto max-w-7xl px-6 lg:px-10 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
-//           {STATS.map((stat: Stat) => (
-//             <div key={stat.label} className="flex flex-col items-center justify-center py-6 px-4 text-center">
-//               <div className="flex items-baseline gap-0.5 mb-1">
-//                 <span
-//                   data-count={stat.value}
-//                   className="text-2xl md:text-3xl font-bold text-white tabular-nums"
-//                 >
-//                   0
-//                 </span>
-//                 <span className="text-xl font-bold text-white/60">{stat.suffix}</span>
-//               </div>
-//               <span className="text-xs text-white/40 tracking-wide">{stat.label}</span>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-
-//       {/* Scroll hint */}
-//       <a
-//         href="#about"
-//         onClick={(e) => {
-//           e.preventDefault();
-//           document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-//         }}
-//         className="absolute bottom-32 right-10 hidden lg:flex flex-col items-center gap-2 text-white/30 hover:text-white/60 transition-colors duration-300 group z-10"
-//       >
-//         <span className="text-xs tracking-[0.2em] uppercase rotate-90 translate-y-4">Scroll</span>
-//         <span className="w-px h-12 bg-white/20 group-hover:bg-white/40 transition-colors duration-500" />
-//       </a>
-//     </section>
-//   );
-// }
-
-
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -155,17 +5,25 @@ import { STATS } from "@/lib/data";
 import { animateCounter } from "@/lib/utils";
 import type { Stat } from "@/types";
 
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+}
+
 export default function HeroSection() {
   const statsRef = useRef<HTMLDivElement>(null);
+  const mobileStatsRef = useRef<HTMLDivElement>(null);
   const countersStarted = useRef(false);
 
   useEffect(() => {
+    const section = document.getElementById("hero");
+    if (!section) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !countersStarted.current) {
             countersStarted.current = true;
-            const els = entry.target.querySelectorAll<HTMLElement>("[data-count]");
+            const els = section.querySelectorAll<HTMLElement>("[data-count]");
             els.forEach((el) => {
               const target = parseInt(el.dataset.count || "0", 10);
               animateCounter(el, target, "", 2000);
@@ -173,72 +31,59 @@ export default function HeroSection() {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.35 }
     );
 
-    if (statsRef.current) observer.observe(statsRef.current);
+    const targets = [statsRef.current, mobileStatsRef.current].filter(Boolean);
+    targets.forEach((el) => observer.observe(el!));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section
-      id="hero"
-      className="relative w-full overflow-hidden bg-black"
-    >
-      {/* ── VIDEO BACKGROUND ── */}
-      {/*
-        The video wrapper uses aspect-ratio to stay 16/9 on wide screens
-        but switches to min-h-screen on mobile so it always fills the viewport.
-        The video itself is absolutely positioned to cover the wrapper fully.
-      */}
-      <div className="relative w-full min-h-screen lg:aspect-video lg:min-h-0">
-        {/* Video */}
-        <video
-          className="absolute left-[400px] top-20 inset-0 w-[70%] h-[70%] object-cover"
-          src="/videos/hero-model.mov"   // ← replace with your video file path
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
+    <section id="hero" className="relative w-full overflow-hidden bg-[#050505] lg:bg-black">
+      {/* ── VIDEO FRAME ── */}
+      <div className="hero-viewport">
+        <div className="hero-video-wrap">
+          <video
+            className="hero-video"
+            src="/videos/hero-model.mov"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+        </div>
 
-        {/* Gradient overlay — stronger at edges, lighter in centre so the model shines */}
+        {/* Mobile/tablet: bottom fade */}
         <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.20) 40%, rgba(0,0,0,0.20) 60%, rgba(0,0,0,0.75) 100%)",
-          }}
+          className="hero-mobile-fade pointer-events-none absolute inset-0 lg:hidden"
+          aria-hidden
         />
 
-        {/* Left vignette for readability of text */}
+        {/* Desktop vignette */}
         <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.0) 60%)",
-          }}
+          className="hero-vignette pointer-events-none absolute inset-0 hidden lg:block"
+          aria-hidden
         />
 
-        {/* ── CONTENT LAYER ── */}
-        <div className="relative z-10 flex flex-col justify-between h-full min-h-screen lg:min-h-0 lg:h-full px-6 lg:px-14 pt-28 pb-0">
+        <div className="grain pointer-events-none absolute inset-0 hidden opacity-25 lg:block" aria-hidden />
 
-          {/* Top content block */}
-          <div className="flex-1 flex flex-col justify-center max-w-2xl">
+        <h1 className="sr-only">Globe X Infra — We Build Spaces That Speak</h1>
 
-            {/* Eyebrow */}
-            <div className="hero-animate-1 flex items-center gap-3 mb-6">
-              <span className="inline-block w-8 h-px bg-white/40" />
-              <span className="text-xs font-medium tracking-[0.3em] uppercase text-white/60">
+        {/* ── DESKTOP CONTENT ── */}
+        <div className="relative z-10 mx-auto hidden h-full w-full max-w-7xl flex-col justify-between px-10 pb-6 pt-24 xl:px-14 lg:flex">
+          <div className="flex max-w-xl flex-1 flex-col justify-center xl:max-w-2xl">
+            <div className="hero-animate-1 mb-6 flex items-center gap-3">
+              <span className="inline-block h-px w-8 bg-white/40" />
+              <span className="text-xs font-medium uppercase tracking-[0.3em] text-white/60">
                 Spatial Experience Design
               </span>
             </div>
 
-            {/* Headline */}
-            <h1 className="hero-animate-2 font-dm-sans font-bold text-white leading-[1.05] tracking-tight mb-6">
-              <span className="block text-fluid-5xl">We Build</span>
-              <span className="block text-fluid-5xl">
+            <h1 className="hero-animate-2 mb-6 font-dm-sans text-white leading-[1.05] tracking-tight">
+              <span className="block text-fluid-5xl font-bold">We Build</span>
+              <span className="block text-fluid-5xl font-bold">
                 Spaces That{" "}
                 <em className="font-playfair font-normal italic text-white/70">
                   Speak.
@@ -246,53 +91,59 @@ export default function HeroSection() {
               </span>
             </h1>
 
-            {/* Sub */}
-            <p className="hero-animate-3 text-white/60 text-fluid-base max-w-md leading-relaxed mb-10">
+            <p className="hero-animate-3 mb-10 max-w-md text-fluid-base leading-relaxed text-white/60">
               Globe X Infra crafts award-worthy exhibitions, trade show booths,
               and corporate event environments across India and internationally.
             </p>
 
-            {/* CTAs */}
             <div className="hero-animate-4 flex flex-wrap items-center gap-4">
               <a
                 href="#work"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+                  scrollTo("work");
                 }}
-                className="inline-flex items-center gap-3 bg-white text-primary font-semibold text-sm px-7 py-4 rounded-full hover:bg-white/90 transition-all duration-300 group"
+                className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-semibold text-primary transition-all duration-300 hover:bg-white/90"
               >
                 View Our Work
                 <svg
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
               </a>
               <a
                 href="#about"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                  scrollTo("about");
                 }}
-                className="inline-flex items-center gap-3 text-white/80 font-medium text-sm hover:text-white transition-colors duration-300 group"
+                className="group inline-flex items-center gap-3 text-sm font-medium text-white/80 transition-colors duration-300 hover:text-white"
               >
                 Our Story
-                <span className="w-8 h-px bg-white/40 group-hover:w-12 transition-all duration-300 inline-block" />
+                <span className="inline-block h-px w-8 bg-white/40 transition-all duration-300 group-hover:w-12" />
               </a>
             </div>
           </div>
 
-          {/* Watermark marquee — sits above the stats strip */}
-          <div className="hero-animate-5 overflow-hidden py-3 select-none pointer-events-none">
-            <div className="flex whitespace-nowrap animate-[marquee_10s_linear_infinite]">
+          <div className="hero-animate-5 pointer-events-none select-none overflow-hidden py-3">
+            <div className="flex animate-[marquee_10s_linear_infinite] whitespace-nowrap">
               {Array(6)
-                .fill("Globe X Infra · Exhibition Design · Trade Shows · Brand Activation · ")
+                .fill(
+                  "Globe X Infra · Exhibition Design · Trade Shows · Brand Activation · "
+                )
                 .map((t, i) => (
                   <span
                     key={i}
-                    className="text-white/[0.06] text-7xl font-bold tracking-tight mr-8 shrink-0"
+                    className="mr-8 shrink-0 text-7xl font-bold tracking-tight text-white/[0.06] xl:text-8xl"
                   >
                     {t}
                   </span>
@@ -301,41 +152,100 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Scroll hint */}
+        {/* Scroll hint — desktop */}
         <a
           href="#about"
           onClick={(e) => {
             e.preventDefault();
-            document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+            scrollTo("about");
           }}
-          className="absolute bottom-28 right-10 hidden lg:flex flex-col items-center gap-2 text-white/30 hover:text-white/60 transition-colors duration-300 group z-10"
+          className="group absolute bottom-28 right-10 z-10 hidden flex-col items-center gap-2 text-white/30 transition-colors duration-300 hover:text-white/60 lg:flex"
         >
-          <span className="text-xs tracking-[0.2em] uppercase rotate-90 translate-y-4">Scroll</span>
-          <span className="w-px h-12 bg-white/20 group-hover:bg-white/40 transition-colors duration-500" />
+          <span className="translate-y-4 rotate-90 text-xs uppercase tracking-[0.2em]">
+            Scroll
+          </span>
+          <span className="h-12 w-px bg-white/20 transition-colors duration-500 group-hover:bg-white/40" />
         </a>
+
+        <div
+          className="pointer-events-none absolute bottom-[18%] right-[8%] top-[22%] hidden w-px bg-gradient-to-b from-transparent via-white/15 to-transparent lg:block xl:right-[10%]"
+          aria-hidden
+        />
+
+        {/* ── MOBILE / TABLET: stats overlay on video bottom ── */}
+        <div
+          ref={mobileStatsRef}
+          className="hero-mobile-stats absolute inset-x-0 bottom-0 z-20 px-4 pb-5 pt-16 sm:px-6 md:pt-20 lg:hidden"
+        >
+          <div className="mx-auto grid max-w-lg grid-cols-2 gap-px overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/15 sm:max-w-2xl md:max-w-3xl md:grid-cols-4">
+            {STATS.map((stat: Stat) => (
+              <div
+                key={stat.label}
+                className="flex flex-col items-center justify-center bg-black/25 px-3 py-3.5 text-center backdrop-blur-md sm:py-4"
+              >
+                <div className="mb-0.5 flex items-baseline gap-0.5">
+                  <span
+                    data-count={stat.value}
+                    className="text-xl font-bold tabular-nums text-white sm:text-2xl md:text-3xl"
+                  >
+                    0
+                  </span>
+                  <span className="text-base font-bold text-white/70 sm:text-lg md:text-xl">
+                    {stat.suffix}
+                  </span>
+                </div>
+                <span className="text-[10px] uppercase tracking-wider text-white/55 sm:text-xs">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => scrollTo("about")}
+            className="mx-auto mt-3 flex flex-col items-center gap-1 text-white/40 transition-colors hover:text-white/70"
+            aria-label="Scroll to about section"
+          >
+            <span className="text-[10px] uppercase tracking-[0.25em]">Explore</span>
+            <svg
+              className="h-4 w-4 animate-bounce"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
       </div>
 
-      {/* ── STATS STRIP ── outside the video wrapper so it's always below */}
+      {/* ── DESKTOP STATS STRIP ── */}
       <div
         ref={statsRef}
-        className="relative z-10 border-t border-white/10 bg-black"
+        className="relative z-10 hidden border-t border-white/10 bg-black/80 backdrop-blur-md lg:block"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
+        <div className="mx-auto grid max-w-7xl grid-cols-4 divide-x divide-white/10 px-6 lg:px-10">
           {STATS.map((stat: Stat) => (
             <div
               key={stat.label}
-              className="flex flex-col items-center justify-center py-6 px-4 text-center"
+              className="flex flex-col items-center justify-center px-4 py-6 text-center"
             >
-              <div className="flex items-baseline gap-0.5 mb-1">
+              <div className="mb-1 flex items-baseline gap-0.5">
                 <span
                   data-count={stat.value}
-                  className="text-2xl md:text-3xl font-bold text-white tabular-nums"
+                  className="text-2xl font-bold tabular-nums text-white md:text-3xl"
                 >
                   0
                 </span>
-                <span className="text-xl font-bold text-white/60">{stat.suffix}</span>
+                <span className="text-xl font-bold text-white/60">
+                  {stat.suffix}
+                </span>
               </div>
-              <span className="text-xs text-white/40 tracking-wide">{stat.label}</span>
+              <span className="text-xs tracking-wide text-white/40">
+                {stat.label}
+              </span>
             </div>
           ))}
         </div>
